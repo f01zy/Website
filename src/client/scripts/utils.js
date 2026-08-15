@@ -6,11 +6,12 @@ export const show_element = (element) => {
 export const create_card = (title_text, link_url, description_text, tags, parent_container) => {
   const container = document.createElement("div");
   container.classList.add("block");
+  container.dataset.tags = tags ? tags.toLowerCase() : "";
 
   const title = document.createElement("a");
   title.textContent = title_text;
   title.href = link_url;
-  title.target = "_blank";
+  title.target = link_url.startsWith("http") ? "_blank" : "_self";
 
   const description = document.createElement("p");
   let clean_description = description_text;

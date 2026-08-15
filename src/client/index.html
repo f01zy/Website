@@ -3,9 +3,11 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>f01zy</title>
     <link rel="icon" href="assets/favicon.png" type="image/png" sizes="32x32" />
+    <title>f01zy</title>
 
+    <link rel="stylesheet" href="/src/client/styles/projects.css" />
+    <link rel="stylesheet" href="/src/client/styles/filters.css" />
     <link rel="stylesheet" href="/src/client/styles/variables.css" />
     <link rel="stylesheet" href="/src/client/styles/home.css" />
     <link rel="stylesheet" href="/src/client/styles/blocks.css" />
@@ -22,6 +24,8 @@
     <script src="/third_party/scripts/marked-katex-extension.js" defer></script>
     <script src="/third_party/scripts/purify.js" defer></script>
     <script src="/src/client/scripts/art.js" type="module" defer></script>
+    <script src="/src/client/scripts/wasm.js" type="module" defer></script>
+    <script src="/src/client/scripts/filters.js" type="module" defer></script>
     <script src="/src/client/scripts/animation.js" type="module" defer></script>
     <script src="/src/client/scripts/footer.js" type="module" defer></script>
     <script src="/src/client/scripts/links.js" type="module" defer></script>
@@ -39,9 +43,18 @@
       </nav>
 
       <main class="content-wrapper">
-        <div class="projects container blocks none"></div>
-        <div class="posts container blocks none"></div>
         <div class="post container scrollable none"></div>
+        <div class="project container not-scrollable none"></div>
+
+        <div class="posts container none">
+          <div class="filters-container"></div>
+          <div class="blocks"></div>
+        </div>
+
+        <div class="projects container none">
+          <div class="filters-container"></div>
+          <div class="blocks"></div>
+        </div>
 
         <div class="home container not-scrollable none">
           <canvas></canvas>

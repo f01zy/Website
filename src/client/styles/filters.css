@@ -1,0 +1,32 @@
+.filters-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--gap-small);
+  margin-bottom: var(--gap-large);
+  width: 100%;
+}
+
+.filter-btn {
+  background: var(--bg-surface);
+  color: var(--text-muted);
+  border: 1px solid var(--border-main);
+  padding: var(--padding-element);
+  border-radius: var(--radius-main);
+  cursor: pointer;
+  font-size: var(--font-size-small);
+  font-family: inherit;
+  text-transform: uppercase;
+  transition:
+    border-color var(--speed-normal),
+    color var(--speed-normal);
+}
+
+.filter-btn:hover {
+  border-color: var(--color-accent-muted);
+  color: var(--text-main);
+}
+
+.filter-btn.active {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+}

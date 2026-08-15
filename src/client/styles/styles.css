@@ -1,18 +1,22 @@
 @import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&display=swap");
 
 * {
+  box-sizing: border-box;
   font-family: "Cormorant Garamond", serif;
   font-optical-sizing: auto;
   font-weight: 400;
   font-style: normal;
   color: var(--text-main);
-  box-sizing: border-box;
 }
 
 body {
-  background: var(--bg-main);
   margin: 0;
   min-height: 100vh;
+  background: var(--bg-main);
+}
+
+::selection {
+  background: var(--color-accent);
 }
 
 .page-wrapper {
@@ -24,32 +28,54 @@ body {
 }
 
 .content-wrapper {
+  display: flex;
+  flex-direction: column;
   width: 100%;
   max-width: var(--width-content-max);
   flex-grow: 1;
+}
+
+.container {
   display: flex;
   flex-direction: column;
-}
-
-nav {
-  height: var(--height-header);
-  display: flex;
   align-items: center;
-  gap: var(--gap-medium);
-  margin-bottom: 20px;
+  width: 100%;
+  padding: var(--padding-container);
 }
 
-.empty p span {
-  font-style: italic;
+.blocks {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-large);
+  justify-content: flex-start;
+}
+
+.scrollable {
+  justify-content: flex-start;
+}
+
+.not-scrollable {
+  flex-grow: 1;
+  justify-content: center;
+  text-align: center;
 }
 
 .not-found {
-  flex-grow: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   width: 100%;
+  flex-grow: 1;
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  height: var(--height-header);
+  gap: var(--gap-medium);
+  margin-bottom: 20px;
 }
 
 footer {
@@ -62,10 +88,6 @@ footer {
 footer img {
   width: 15px;
   margin-right: 10px;
-}
-
-::selection {
-  background: var(--color-accent);
 }
 
 a {
@@ -92,37 +114,18 @@ a:hover::after {
   transform: scaleX(1);
 }
 
-textarea {
-  tab-size: 4;
-  -moz-tab-size: 4;
-}
-
+textarea,
 pre code {
   tab-size: 4;
   -moz-tab-size: 4;
 }
 
-.container {
-  width: 100%;
-  padding: var(--padding-container);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+.empty p span {
+  font-style: italic;
 }
 
-.blocks {
-  gap: var(--gap-large);
-  justify-content: flex-start;
-}
-
-.scrollable {
-  justify-content: flex-start;
-}
-
-.not-scrollable {
-  flex-grow: 1;
-  justify-content: center;
-  text-align: center;
+.katex {
+  font-size: calc(var(--font-size-medium) * 0.9) !important;
 }
 
 .fade-in {

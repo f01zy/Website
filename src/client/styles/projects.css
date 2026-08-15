@@ -1,0 +1,6 @@
+#project-canvas {
+  max-width: 100%;
+  border: 1px solid var(--border-main);
+  border-radius: var(--radius-main);
+  box-shadow: var(--shadow-main);
+}

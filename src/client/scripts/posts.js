@@ -1,6 +1,9 @@
 import { create_card, show_element } from "./utils.js";
+import { setup_filters } from "./filters.js";
 
-const posts_container = document.querySelector(".posts");
+const posts_section = document.querySelector(".posts");
+const posts_list = posts_section.querySelector(".blocks");
+const post_filters = posts_section.querySelector(".filters-container");
 const post_container = document.querySelector(".post");
 const new_post_section = document.querySelector(".new-post");
 const new_post_form = new_post_section.querySelector(".post-form");
@@ -137,10 +140,19 @@ export const load_posts = async () => {
       show_element(empty_section);
       return;
     }
+
+    posts_list.innerHTML = "";
+    const unique_tags = new Set();
+
     for (const post of posts) {
-      create_card(post.title, `/posts/${post.slug}`, post.preview, post.tags, posts_container);
+      create_card(post.title, `/posts/${post.slug}`, post.preview, post.tags, posts_list);
+      if (post.tags) {
+        post.tags.split(",").forEach((t) => unique_tags.add(t.trim()));
+      }
     }
-    show_element(posts_container);
+
+    setup_filters(Array.from(unique_tags), post_filters, posts_list);
+    show_element(posts_section);
   } catch (err) {
     console.error(err);
     show_element(not_found_section);
