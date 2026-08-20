@@ -8,20 +8,25 @@ export const configure_footer = async () => {
   const source_text = `<a href="${source_link}" target="_blank">source</a>`;
 
   try {
-    const res = await fetch("/api/now-playing");
+    const res = await fetch("/api/activity");
     if (!res.ok) {
       label.innerHTML = source_text;
       return;
     }
     const data = await res.json();
-    if (!data.is_playing) {
+    if (!data.is_activity) {
       label.innerHTML = source_text;
       return;
     }
     const icon = document.createElement("img");
-    const artists_text = data.artists.map((artist, i) => `<a href="${artist.url}" target="_blank">${artist.name}</a>`).join(", ");
-    icon.src = "/assets/spotify.svg";
-    label.innerHTML = `Currently listening <a href="${data.song_url}" target="_blank">${data.title}</a> - ${artists_text}`;
+    if (data.source == "steam") {
+      icon.src = "/assets/steam.svg";
+      label.innerHTML = `Currently playing <a href="${data.game_url}" target="_blank">${data.title}</a>`;
+    } else if ((data.source = "spotify")) {
+      const artists_text = data.artists.map((artist) => `<a href="${artist.url}" target="_blank">${artist.name}</a>`).join(", ");
+      icon.src = "/assets/spotify.svg";
+      label.innerHTML = `Currently listening <a href="${data.song_url}" target="_blank">${data.title}</a> - ${artists_text}`;
+    }
     footer.append(icon);
   } catch (err) {
     label.innerHTML = source_text;

@@ -1,3 +1,5 @@
+const domain = "f01zy.xyz";
+
 export const show_element = (element) => {
   element.classList.add("fade-in");
   element.classList.remove("none");
@@ -11,7 +13,7 @@ export const create_card = (title_text, link_url, description_text, tags, parent
   const title = document.createElement("a");
   title.textContent = title_text;
   title.href = link_url;
-  title.target = link_url.startsWith("http") ? "_blank" : "_self";
+  title.target = link_url.startsWith(`https://${domain}`) ? "_self" : "_blank";
 
   const description = document.createElement("p");
   let clean_description = description_text;

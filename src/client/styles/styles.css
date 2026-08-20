@@ -88,6 +88,7 @@ footer {
 footer img {
   width: 15px;
   margin-right: 10px;
+  color: var(--text-main);
 }
 
 a {

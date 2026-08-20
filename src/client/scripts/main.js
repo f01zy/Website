@@ -12,6 +12,16 @@ const new_post_section = document.querySelector(".new-post");
 
 go_back_button.addEventListener("click", () => history.back());
 
+const sound = new Audio("/assets/click.mp3");
+document.addEventListener("click", (event) => {
+  const link = event.target.closest("a");
+  if (link) {
+    event.preventDefault();
+    sound.addEventListener("ended", () => (window.location.href = link.href), { once: true });
+    sound.play().catch(() => (window.location.href = link.href));
+  }
+});
+
 if (typeof marked !== "undefined") {
   if (typeof markedKatex !== "undefined") {
     marked.use(markedKatex({ throwOnError: false }));

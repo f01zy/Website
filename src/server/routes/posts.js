@@ -40,7 +40,7 @@ export async function handle_posts(req, method, pathname) {
   }
 
   if (pathname === "/api/posts" && method === "GET") {
-    const posts = db.prepare("SELECT title, slug, preview, created_at FROM posts ORDER BY created_at DESC").all();
+    const posts = db.prepare("SELECT title, slug, preview, tags, created_at FROM posts ORDER BY created_at DESC").all();
     return json_response(posts);
   }
 
