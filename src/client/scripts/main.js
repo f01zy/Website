@@ -3,9 +3,10 @@ import { cleanup_active_project, load_project, load_projects } from "./projects.
 import { load_posts, load_post, init_post_form } from "./posts.js";
 import { configure_footer } from "./footer.js";
 import { configure_links } from "./links.js";
-import { show_element } from "./utils.js";
+import { show_element, get_fade_duration } from "./utils.js";
 
 const home_section = document.querySelector(".home");
+const page_wrapper = document.querySelector(".page-wrapper");
 const not_found_section = document.querySelector(".not-found");
 const go_back_button = not_found_section.querySelector(".back-link");
 const new_post_section = document.querySelector(".new-post");
@@ -15,11 +16,20 @@ go_back_button.addEventListener("click", () => history.back());
 const sound = new Audio("/assets/click.mp3");
 document.addEventListener("click", (event) => {
   const link = event.target.closest("a");
-  if (link) {
-    event.preventDefault();
-    sound.addEventListener("ended", () => (window.location.href = link.href), { once: true });
-    sound.play().catch(() => (window.location.href = link.href));
-  }
+  if (!link) return;
+
+  event.preventDefault();
+  page_wrapper.classList.add("fade-out");
+
+  const fade_promise = new Promise((resolve) => setTimeout(resolve, get_fade_duration()));
+  const audio_promise = new Promise((resolve) => {
+    sound.addEventListener("ended", resolve, { once: true });
+    sound.play().catch(resolve);
+  });
+
+  Promise.all([fade_promise, audio_promise]).then(() => {
+    window.location.href = link.href;
+  });
 });
 
 if (typeof marked !== "undefined") {
@@ -53,7 +63,7 @@ const routes = [
   },
   { path: "/projects", action: () => load_projects() },
   {
-    path: /^\/projects\/([a-zA-Z0-9_-]+)$/,
+    path: /^\/projects\/([a-zA-Zа-яА-ЯёЁ0-9_-]+)\/?$/,
     action: async (match) => await load_project(match[1]),
   },
   {
@@ -65,7 +75,7 @@ const routes = [
   },
   { path: "/posts", action: async () => await load_posts() },
   {
-    path: /^\/posts\/([a-zA-Zа-яА-ЯёЁ0-9_-]+)$/,
+    path: /^\/posts\/([a-zA-Zа-яА-ЯёЁ0-9_-]+)\/?$/,
     action: async (match) => await load_post(match[1]),
   },
 ];

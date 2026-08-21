@@ -131,7 +131,12 @@ pre code {
 
 .fade-in {
   opacity: 0;
-  animation: fadeInPage var(--speed-fade) forwards;
+  animation: fadeIn var(--speed-fade) forwards;
+}
+
+.fade-out {
+  opacity: 1;
+  animation: fadeOut var(--speed-fade) forwards;
 }
 
 .status-error {
@@ -146,11 +151,20 @@ pre code {
   display: none !important;
 }
 
-@keyframes fadeInPage {
+@keyframes fadeIn {
   from {
     opacity: 0;
   }
   to {
     opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
   }
 }

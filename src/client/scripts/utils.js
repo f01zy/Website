@@ -5,6 +5,13 @@ export const show_element = (element) => {
   element.classList.remove("none");
 };
 
+export const get_fade_duration = () => {
+  const raw = getComputedStyle(document.documentElement).getPropertyValue("--speed-fade").trim();
+  if (raw.endsWith("ms")) return parseFloat(raw);
+  if (raw.endsWith("s")) return parseFloat(raw) * 1000;
+  return parseFloat(raw) || 0;
+};
+
 export const create_card = (title_text, link_url, description_text, tags, parent_container) => {
   const container = document.createElement("div");
   container.classList.add("block");
