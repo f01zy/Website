@@ -10,8 +10,8 @@ const image_offset_y = 0;
 
 const spring_coefficient = 150;
 const particle_weight = 1.0;
-const mouse_radius = 150;
-const mouse_power = 6000;
+const mouse_radius = 100;
+const mouse_power = 12000;
 const friction = 0.85;
 
 const canvas = document.querySelector("canvas");

@@ -60,8 +60,8 @@
           <canvas></canvas>
           <h1>f01zy</h1>
           <p>
-            Hi, I'm f01zy. I write low-level software, physics simulations, and TUI programs in C under Linux. Outside of coding, I spend time reading novels
-            and playing chess.
+            Hi, I'm f01zy, a <span id="yo"></span> y.o. developer from Russia. I develop various programs that interest me. Outside of coding, I spend time
+            reading web novels and playing chess.
           </p>
           <div class="links"></div>
         </div>
@@ -76,18 +76,11 @@
               </label>
               <input type="file" name="files" id="image-uploader" class="form-file-input" accept="image/*" />
               <input type="text" name="tags" class="form-ghost-input-tags" placeholder="tags, split, by, comma" />
-              <span class="post-date">Draft</span>
             </div>
             <hr class="post-divider" />
             <input type="text" name="preview" class="form-ghost-input-preview" placeholder="Short post preview..." required />
             <div class="editor-workspace">
-              <textarea
-                name="content"
-                class="form-ghost-textarea"
-                placeholder="Write your story here in Markdown... (Press Ctrl + P to preview)"
-                rows="15"
-                required
-              ></textarea>
+              <textarea name="content" class="form-ghost-textarea" placeholder="Write your story here..." rows="15" required></textarea>
               <div class="preview-container post-content markdown-body none"></div>
             </div>
             <button type="submit" class="form-submit">

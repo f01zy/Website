@@ -3,13 +3,27 @@ import { cleanup_active_project, load_project, load_projects } from "./projects.
 import { load_posts, load_post, init_post_form } from "./posts.js";
 import { configure_footer } from "./footer.js";
 import { configure_links } from "./links.js";
-import { show_element, get_fade_duration } from "./utils.js";
+import { show_element, get_fade_duration, set_title } from "./utils.js";
 
 const home_section = document.querySelector(".home");
 const page_wrapper = document.querySelector(".page-wrapper");
 const not_found_section = document.querySelector(".not-found");
 const go_back_button = not_found_section.querySelector(".back-link");
 const new_post_section = document.querySelector(".new-post");
+
+const yo_span = document.querySelector("#yo");
+const birthday = new Date(2010, 2, 2);
+const update_yo = () => {
+  const now = new Date();
+  const diff = now - birthday;
+  if (diff < 0) {
+    yo_span.textContent = "Unknown";
+    return;
+  }
+  const years = diff / 31536000000;
+  yo_span.textContent = `${Math.floor(years)}`;
+};
+update_yo();
 
 go_back_button.addEventListener("click", () => history.back());
 
@@ -54,6 +68,7 @@ if (typeof marked !== "undefined") {
 const pathname = decodeURIComponent(window.location.pathname);
 const routes = [
   {
+    title: "Home",
     path: "/",
     action: () => {
       show_element(home_section);
@@ -61,20 +76,31 @@ const routes = [
       start_image_animation();
     },
   },
-  { path: "/projects", action: () => load_projects() },
   {
+    title: "Projects",
+    path: "/projects",
+    action: () => load_projects(),
+  },
+  {
+    title: "Project",
     path: /^\/projects\/([a-zA-Zа-яА-ЯёЁ0-9_-]+)\/?$/,
     action: async (match) => await load_project(match[1]),
   },
   {
+    title: "New post",
     path: "/posts/new",
     action: () => {
       show_element(new_post_section);
       init_post_form();
     },
   },
-  { path: "/posts", action: async () => await load_posts() },
   {
+    title: "Posts",
+    path: "/posts",
+    action: async () => await load_posts(),
+  },
+  {
+    title: "Post",
     path: /^\/posts\/([a-zA-Zа-яА-ЯёЁ0-9_-]+)\/?$/,
     action: async (match) => await load_post(match[1]),
   },
@@ -87,11 +113,13 @@ let route_triggered = false;
     if (route.path instanceof RegExp) {
       const match = pathname.match(route.path);
       if (match) {
+        set_title(route.title);
         await route.action(match);
         route_triggered = true;
         break;
       }
     } else if (route.path === pathname) {
+      set_title(route.title);
       await route.action();
       route_triggered = true;
       break;

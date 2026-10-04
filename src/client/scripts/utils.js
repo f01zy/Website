@@ -1,5 +1,7 @@
 const domain = "f01zy.xyz";
 
+export const set_title = (title) => (document.title = `f01zy • ${title}`);
+
 export const show_element = (element) => {
   element.classList.add("fade-in");
   element.classList.remove("none");

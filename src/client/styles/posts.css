@@ -23,17 +23,10 @@ input.post-title {
 
 .post-meta {
   display: flex;
-  justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
   gap: var(--gap-medium);
   margin-bottom: 20px;
-}
-
-.post-date {
-  font-size: var(--font-size-medium);
-  color: var(--text-muted);
-  margin-left: auto;
 }
 
 .post-divider {

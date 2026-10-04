@@ -7,6 +7,7 @@ export async function handle_posts(req, method, pathname) {
       const title = form_data.get("title")?.toString().trim();
       const preview = form_data.get("preview")?.toString().trim();
       const content = form_data.get("content")?.toString().trim();
+      const tags = form_data.get("tags")?.toString().trim();
       const password = form_data.get("password");
 
       if (!password || password !== config.ADMIN_PASSWORD) {
@@ -27,10 +28,10 @@ export async function handle_posts(req, method, pathname) {
         .replace(/\s+/g, "-");
 
       const query = db.prepare(`
-        INSERT INTO posts (title, slug, preview, content) 
-        VALUES (?, ?, ?, ?)
+        INSERT INTO posts (title, slug, preview, content, tags) 
+        VALUES (?, ?, ?, ?, ?)
       `);
-      query.run(title, slug, preview, content);
+      query.run(title, slug, preview, content, tags);
 
       return json_response({ success: true }, 201);
     } catch (err) {
