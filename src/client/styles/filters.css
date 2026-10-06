@@ -1,9 +1,20 @@
 .filters-container {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  scroll-behavior: smooth;
   gap: var(--gap-small);
   margin-bottom: var(--gap-large);
   width: 100%;
+}
+
+.filters-container::-webkit-scrollbar {
+  display: none;
+}
+
+.filters-container {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
 .filter-btn {
@@ -16,6 +27,7 @@
   font-size: var(--font-size-small);
   font-family: inherit;
   text-transform: uppercase;
+  flex-shrink: 0;
   transition:
     border-color var(--speed-normal),
     color var(--speed-normal);

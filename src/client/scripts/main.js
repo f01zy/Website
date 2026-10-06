@@ -10,6 +10,7 @@ const page_wrapper = document.querySelector(".page-wrapper");
 const not_found_section = document.querySelector(".not-found");
 const go_back_button = not_found_section.querySelector(".back-link");
 const new_post_section = document.querySelector(".new-post");
+const filters_containers = document.querySelectorAll(".filters-container");
 
 const yo_span = document.querySelector("#yo");
 const birthday = new Date(2010, 2, 2);
@@ -23,7 +24,6 @@ const update_yo = () => {
   const years = diff / 31536000000;
   yo_span.textContent = `${Math.floor(years)}`;
 };
-update_yo();
 
 go_back_button.addEventListener("click", () => history.back());
 
@@ -45,6 +45,13 @@ document.addEventListener("click", (event) => {
     window.location.href = link.href;
   });
 });
+
+for (const filters_container of filters_containers) {
+  filters_container.addEventListener("wheel", (event) => {
+    event.preventDefault();
+    filters_container.scrollLeft += event.deltaY;
+  });
+}
 
 if (typeof marked !== "undefined") {
   if (typeof markedKatex !== "undefined") {
@@ -84,7 +91,7 @@ const routes = [
   {
     title: "Project",
     path: /^\/projects\/([a-zA-Zа-яА-ЯёЁ0-9_-]+)\/?$/,
-    action: async (match) => await load_project(match[1].toLowerCase()),
+    action: async (match) => await load_project(match[1]),
   },
   {
     title: "New post",
@@ -107,6 +114,8 @@ const routes = [
 ];
 
 cleanup_active_project();
+update_yo();
+
 let route_triggered = false;
 (async () => {
   for (const route of routes) {

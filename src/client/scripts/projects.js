@@ -28,7 +28,9 @@ export const load_projects = async () => {
     const unique_tags = new Set();
 
     for (const project of projects) {
-      create_card(project.title, project.link, project.description, project.tags, projects_list);
+      const name = project.title.toLowerCase().replace(" ", "-");
+      const link = project.is_simulation ? `${window.location.origin}/projects/${name}` : project.link;
+      create_card(project.title, link, project.description, project.tags, projects_list);
       if (project.tags) {
         project.tags.split(",").forEach((t) => unique_tags.add(t.trim()));
       }
