@@ -3,6 +3,7 @@ import { config } from "./config.js";
 import { handle_api } from "./routes.js";
 
 Bun.serve({
+  host: "127.0.0.1",
   port: config.PORT,
   async fetch(req) {
     const url = new URL(req.url);

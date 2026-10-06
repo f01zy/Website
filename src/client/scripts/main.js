@@ -84,7 +84,7 @@ const routes = [
   {
     title: "Project",
     path: /^\/projects\/([a-zA-Zа-яА-ЯёЁ0-9_-]+)\/?$/,
-    action: async (match) => await load_project(match[1]),
+    action: async (match) => await load_project(match[1].toLowerCase()),
   },
   {
     title: "New post",
