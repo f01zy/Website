@@ -2,6 +2,8 @@ const domain = "f01zy.xyz";
 
 export const set_title = (title) => (document.title = `f01zy • ${title}`);
 
+export const random = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
+
 export const show_element = (element) => {
   element.classList.add("fade-in");
   element.classList.remove("none");
@@ -12,6 +14,14 @@ export const get_fade_duration = () => {
   if (raw.endsWith("ms")) return parseFloat(raw);
   if (raw.endsWith("s")) return parseFloat(raw) * 1000;
   return parseFloat(raw) || 0;
+};
+
+export const get_password = () => {
+  const cookie = localStorage.getItem("password");
+  if (cookie) return cookie;
+  const password = prompt("Password: ");
+  localStorage.setItem("password", password);
+  return password;
 };
 
 export const create_card = (title_text, link_url, description_text, tags, parent_container) => {

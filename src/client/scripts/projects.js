@@ -11,6 +11,7 @@ const empty_section = document.querySelector(".empty");
 
 export const cleanup_active_project = () => {
   unmount_wasm_project();
+  project_container.innerHTML = "";
 };
 
 export const load_projects = async () => {
@@ -47,6 +48,19 @@ export const load_projects = async () => {
 export const load_project = async (name) => {
   unmount_wasm_project();
   mount_wasm_project(name)
-    .then(() => show_element(project_container))
-    .catch(() => show_element(not_found_section));
+    .then(async () => {
+      const res = await fetch(`/projects/${name}/info.md`);
+      if (!res.ok) throw new Error("Failed to get the project info");
+      const data = await res.text();
+      const clean_content = DOMPurify.sanitize(marked.parse(data));
+      const content_container = document.createElement("div");
+      content_container.classList.add("project-info");
+      content_container.innerHTML = clean_content;
+      project_container.append(content_container);
+      show_element(project_container);
+    })
+    .catch(() => {
+      unmount_wasm_project();
+      show_element(not_found_section);
+    });
 };

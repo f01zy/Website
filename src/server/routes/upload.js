@@ -3,7 +3,7 @@ import { write } from "bun";
 import { mkdir } from "fs/promises";
 import { join } from "path";
 
-export async function handle_upload(req, method) {
+export const handle_upload = async (req, method) => {
   if (method !== "POST") return null;
 
   try {
@@ -28,4 +28,4 @@ export async function handle_upload(req, method) {
     console.error(err);
     return json_response({ error: "Upload failed" }, 500);
   }
-}
+};

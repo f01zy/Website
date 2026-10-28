@@ -1,6 +1,6 @@
 import { config, db, json_response } from "../config.js";
 
-export async function handle_posts(req, method, pathname) {
+export const handle_posts = async (req, method, pathname) => {
   if (pathname === "/api/posts" && method === "POST") {
     try {
       const form_data = await req.formData();
@@ -53,4 +53,4 @@ export async function handle_posts(req, method, pathname) {
   }
 
   return null;
-}
+};

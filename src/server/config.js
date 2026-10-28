@@ -2,11 +2,7 @@ import { Database } from "bun:sqlite";
 import { join } from "path";
 
 export const config = {
-  SPOTIFY_CLIENT_ID: Bun.env.SPOTIFY_CLIENT_ID,
-  SPOTIFY_CLIENT_SECRET: Bun.env.SPOTIFY_CLIENT_SECRET,
-  SPOTIFY_REFRESH_TOKEN: Bun.env.SPOTIFY_REFRESH_TOKEN,
-  STEAM_API_KEY: Bun.env.STEAM_API_KEY,
-  STEAM_ID: Bun.env.STEAM_ID,
+  LISTEN_BRAINZ_USERNAME: Bun.env.LISTEN_BRAINZ_USERNAME,
   ADMIN_PASSWORD: Bun.env.ADMIN_PASSWORD,
   PORT: Bun.env.PORT,
   BASIC_AUTH: btoa(`${Bun.env.SPOTIFY_CLIENT_ID}:${Bun.env.SPOTIFY_CLIENT_SECRET}`),

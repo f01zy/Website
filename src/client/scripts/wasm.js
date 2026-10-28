@@ -24,14 +24,28 @@ export const mount_wasm_project = async (project_name) => {
 };
 
 export const unmount_wasm_project = () => {
-  if (instance) {
-    if (instance._cleanup_game) {
+  if (!instance) return;
+
+  try {
+    if (typeof instance._cleanup_game === "function") {
       instance._cleanup_game();
     }
-    const canvas = instance.canvas || document.querySelector("#project-canvas");
-    if (canvas) {
-      canvas.remove();
+    if (typeof instance.emscripten_cancel_main_loop === "function") {
+      instance.emscripten_cancel_main_loop();
     }
-    instance = null;
+  } catch (e) {
+    console.warn("Failed to unmount project:", e);
   }
+
+  const canvas = instance.canvas || document.querySelector("#project-canvas");
+  if (canvas) {
+    const gl = canvas.getContext("webgl2") || canvas.getContext("webgl");
+    if (gl) {
+      const ext = gl.getExtension("WEBGL_lose_context");
+      if (ext) ext.loseContext();
+    }
+    canvas.remove();
+  }
+
+  instance = null;
 };

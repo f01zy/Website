@@ -3,7 +3,7 @@ import { handle_upload } from "./routes/upload.js";
 import { handle_posts } from "./routes/posts.js";
 import { handle_projects } from "./routes/projects.js";
 
-export async function handle_api(req, url) {
+export const handle_api = async (req, url) => {
   const pathname = decodeURIComponent(url.pathname);
   const method = req.method;
 
@@ -24,4 +24,4 @@ export async function handle_api(req, url) {
   }
 
   return null;
-}
+};

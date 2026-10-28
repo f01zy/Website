@@ -13,20 +13,16 @@ export const configure_footer = async () => {
       label.innerHTML = source_text;
       return;
     }
+
     const data = await res.json();
     if (!data.is_activity) {
       label.innerHTML = source_text;
       return;
     }
+
     const icon = document.createElement("img");
-    if (data.source == "steam") {
-      icon.src = "/assets/steam.svg";
-      label.innerHTML = `Currently playing <a href="${data.game_url}" target="_blank">${data.title}</a>`;
-    } else if ((data.source = "spotify")) {
-      const artists_text = data.artists.map((artist) => `<a href="${artist.url}" target="_blank">${artist.name}</a>`).join(", ");
-      icon.src = "/assets/spotify.svg";
-      label.innerHTML = `Currently listening <a href="${data.song_url}" target="_blank">${data.title}</a> - ${artists_text}`;
-    }
+    icon.src = "/assets/music.svg";
+    label.innerHTML = `Currently listening ${data.artist} - ${data.album} - ${data.title}`;
     footer.append(icon);
   } catch (err) {
     label.innerHTML = source_text;

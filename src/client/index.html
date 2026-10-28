@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" href="assets/favicon.png" type="image/png" sizes="32x32" />
+    <link rel="icon" href="/assets/favicon.jpg" type="image/jpg" sizes="128x128" />
     <title>f01zy</title>
 
     <link rel="stylesheet" href="/src/client/styles/styles.css" />
@@ -43,8 +43,15 @@
       </nav>
 
       <main class="content-wrapper">
-        <div class="post container scrollable none"></div>
-        <div class="project container not-scrollable none"></div>
+        <div class="home container not-scrollable none">
+          <canvas></canvas>
+          <h1>f01zy</h1>
+          <p>
+            Hi, I'm f01zy, a <span id="yo"></span> y.o. developer from Russia. I develop various programs that interest me. Outside of coding, I spend time
+            reading web novels and playing chess.
+          </p>
+          <div class="links"></div>
+        </div>
 
         <div class="posts container none">
           <div class="filters-container"></div>
@@ -54,16 +61,6 @@
         <div class="projects container none">
           <div class="filters-container"></div>
           <div class="blocks"></div>
-        </div>
-
-        <div class="home container not-scrollable none">
-          <canvas></canvas>
-          <h1>f01zy</h1>
-          <p>
-            Hi, I'm f01zy, a <span id="yo"></span> y.o. developer from Russia. I develop various programs that interest me. Outside of coding, I spend time
-            reading web novels and playing chess.
-          </p>
-          <div class="links"></div>
         </div>
 
         <div class="new-post container not-scrollable none">
@@ -100,6 +97,8 @@
         </div>
       </main>
 
+      <div class="post container scrollable none"></div>
+      <div class="project container scrollable none"></div>
       <footer></footer>
     </div>
   </body>

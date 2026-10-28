@@ -1,4 +1,4 @@
-import { create_card, show_element } from "./utils.js";
+import { create_card, get_password, show_element } from "./utils.js";
 import { setup_filters } from "./filters.js";
 
 const posts_section = document.querySelector(".posts");
@@ -48,7 +48,7 @@ export const init_post_form = () => {
     image_uploader.addEventListener("change", async (e) => {
       const file = e.target.files[0];
       if (!file) return;
-      const password = prompt("Admin password");
+      const password = get_password();
       if (!password) {
         image_uploader.value = "";
         return;
@@ -90,7 +90,7 @@ export const init_post_form = () => {
   new_post_form.addEventListener("submit", async (e) => {
     e.preventDefault();
     const form_data = new FormData(e.target);
-    const password = prompt("Admin password");
+    const password = get_password();
     if (!password) return;
     form_data.append("password", password);
 
