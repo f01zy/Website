@@ -1,5 +1,3 @@
-const domain = "f01zy.xyz";
-
 export const set_title = (title) => (document.title = `f01zy • ${title}`);
 
 export const random = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
@@ -24,34 +22,18 @@ export const get_password = () => {
   return password;
 };
 
-export const create_card = (title_text, link_url, description_text, tags, parent_container) => {
-  const container = document.createElement("div");
-  container.classList.add("block");
-  container.dataset.tags = tags ? tags.toLowerCase() : "";
+export const is_mobile_device = () => {
+  const userAgent = navigator.userAgent || window.opera;
+  const mobileRegex = /android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i;
+  const isMobileUA = mobileRegex.test(userAgent);
+  const isTouchScreen = "ontouchstart" in window || navigator.maxTouchPoints > 0;
+  const isSmallScreen = window.innerWidth <= 768;
+  return isMobileUA || (isTouchScreen && isSmallScreen);
+};
 
-  const title = document.createElement("a");
-  title.textContent = title_text;
-  title.href = link_url;
-  title.target = link_url.startsWith(`https://${domain}`) ? "_self" : "_blank";
-
-  const description = document.createElement("p");
-  let clean_description = description_text;
-  if (typeof DOMPurify !== "undefined") {
-    clean_description = DOMPurify.sanitize(description_text);
-  }
-  description.innerHTML = clean_description;
-  container.append(title, description);
-
-  if (tags && tags.trim() !== "") {
-    const tags_container = document.createElement("div");
-    tags_container.classList.add("tags");
-    tags.split(",").forEach((text) => {
-      const tag = document.createElement("span");
-      tag.classList.add("tag");
-      tag.textContent = text.trim();
-      tags_container.append(tag);
-    });
-    container.append(tags_container);
-  }
-  parent_container.append(container);
+export const is_dev_tools_openned = () => {
+  const start = performance.now();
+  debugger;
+  const end = performance.now();
+  return end - start > 10;
 };

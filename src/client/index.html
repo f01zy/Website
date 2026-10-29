@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="/src/client/styles/filters.css" />
     <link rel="stylesheet" href="/src/client/styles/variables.css" />
     <link rel="stylesheet" href="/src/client/styles/home.css" />
-    <link rel="stylesheet" href="/src/client/styles/blocks.css" />
+    <link rel="stylesheet" href="/src/client/styles/cards.css" />
     <link rel="stylesheet" href="/src/client/styles/posts.css" />
     <link rel="stylesheet" href="/third_party/styles/markdown.css" />
     <link rel="stylesheet" href="/third_party/styles/katex.css" />
@@ -23,7 +23,7 @@
     <script src="/third_party/scripts/katex.js" defer></script>
     <script src="/third_party/scripts/marked-katex-extension.js" defer></script>
     <script src="/third_party/scripts/purify.js" defer></script>
-    <script src="/src/client/scripts/art.js" type="module" defer></script>
+    <script src="/src/client/scripts/arts.js" type="module" defer></script>
     <script src="/src/client/scripts/wasm.js" type="module" defer></script>
     <script src="/src/client/scripts/filters.js" type="module" defer></script>
     <script src="/src/client/scripts/animation.js" type="module" defer></script>
@@ -32,6 +32,7 @@
     <script src="/src/client/scripts/posts.js" type="module" defer></script>
     <script src="/src/client/scripts/projects.js" type="module" defer></script>
     <script src="/src/client/scripts/utils.js" type="module" defer></script>
+    <script src="/src/client/scripts/cards.js" type="module" defer></script>
     <script src="/src/client/scripts/main.js" type="module" defer></script>
   </head>
   <body>
@@ -44,7 +45,6 @@
 
       <main class="content-wrapper">
         <div class="home container not-scrollable none">
-          <canvas></canvas>
           <h1>f01zy</h1>
           <p>
             Hi, I'm f01zy, a <span id="yo"></span> y.o. developer from Russia. I develop various programs that interest me. Outside of coding, I spend time
@@ -55,12 +55,12 @@
 
         <div class="posts container none">
           <div class="filters-container"></div>
-          <div class="blocks"></div>
+          <div class="cards"></div>
         </div>
 
         <div class="projects container none">
           <div class="filters-container"></div>
-          <div class="blocks"></div>
+          <div class="cards"></div>
         </div>
 
         <div class="new-post container not-scrollable none">

@@ -1,5 +1,4 @@
 import { show_element } from "./utils.js";
-
 const source_link = "https://github.com/f01zy/website";
 
 export const configure_footer = async () => {

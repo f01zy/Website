@@ -1,8 +1,9 @@
-import { create_card, get_password, show_element } from "./utils.js";
+import { get_password, show_element } from "./utils.js";
+import { create_card } from "./cards.js";
 import { setup_filters } from "./filters.js";
 
 const posts_section = document.querySelector(".posts");
-const posts_list = posts_section.querySelector(".blocks");
+const posts_list = posts_section.querySelector(".cards");
 const post_filters = posts_section.querySelector(".filters-container");
 const post_container = document.querySelector(".post");
 const new_post_section = document.querySelector(".new-post");

@@ -5,13 +5,13 @@ export const setup_filters = (tags_array, filters_container, list_container) => 
     filters_container.querySelectorAll(".filter-btn").forEach((b) => b.classList.remove("active"));
     active_btn.classList.add("active");
 
-    const blocks = list_container.querySelectorAll(".block");
-    blocks.forEach((block) => {
-      const block_tags = block.dataset.tags || "";
-      if (tag === "all" || block_tags.includes(tag.toLowerCase())) {
-        block.style.display = "block";
+    const cards = list_container.querySelectorAll(".card");
+    cards.forEach((card) => {
+      const card_tags = card.dataset.tags || "";
+      if (tag === "all" || card_tags.includes(tag.toLowerCase())) {
+        card.style.display = "block";
       } else {
-        block.style.display = "none";
+        card.style.display = "none";
       }
     });
   };

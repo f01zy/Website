@@ -1,9 +1,10 @@
-import { start_image_animation } from "./animation.js";
+import { create_image_animation } from "./animation.js";
 import { cleanup_active_project, load_project, load_projects } from "./projects.js";
 import { load_posts, load_post, init_post_form } from "./posts.js";
 import { configure_footer } from "./footer.js";
 import { configure_links } from "./links.js";
-import { show_element, get_fade_duration, set_title } from "./utils.js";
+import { show_element, get_fade_duration, set_title, is_mobile_device } from "./utils.js";
+import { black_hole } from "./arts.js";
 
 const home_section = document.querySelector(".home");
 const page_wrapper = document.querySelector(".page-wrapper");
@@ -78,9 +79,28 @@ const routes = [
     title: "Home",
     path: "/",
     action: () => {
+      if (!is_mobile_device()) {
+        const canvas = document.createElement("canvas");
+        home_section.prepend(canvas);
+        const animation = create_image_animation({
+          image: black_hole,
+          font_size: 10,
+          char_space_x: 4,
+          char_space_y: 4,
+          image_offset_x: 25,
+          image_offset_y: 0,
+          spring_coefficient: 150,
+          particle_weight: 1.0,
+          mouse_radius: 100,
+          mouse_power: 12000,
+          friction: 0.85,
+          fill_style: "#fafafa",
+          font_family: "Cormorant Garamond",
+        });
+        animation.start(canvas);
+      }
       show_element(home_section);
       configure_links();
-      start_image_animation();
     },
   },
   {

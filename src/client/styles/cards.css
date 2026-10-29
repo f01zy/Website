@@ -1,6 +1,6 @@
-.block {
+.card {
   width: 100%;
-  padding: var(--padding-block);
+  padding: var(--padding-card);
   background: var(--bg-surface);
   border: 1px solid var(--border-main);
   border-radius: var(--radius-main);
@@ -10,19 +10,19 @@
     transform var(--speed-normal);
 }
 
-.block:hover {
+.card:hover {
   border-color: var(--color-accent);
   transform: translateY(-2px);
 }
 
-.block a {
+.card a {
   font-size: var(--font-size-large);
   font-weight: 600;
   margin-bottom: 8px;
   color: var(--text-main);
 }
 
-.block p {
+.card p {
   width: 100%;
   margin: 8px 0px 0px 0px;
   font-size: var(--font-size-medium);
@@ -30,18 +30,18 @@
   line-height: 1.5;
 }
 
-.block .tags,
+.card .tags,
 .post-meta .tags {
   display: flex;
   flex-wrap: wrap;
   gap: var(--gap-small);
 }
 
-.block .tags {
+.card .tags {
   margin-top: 16px;
 }
 
-.block .tags .tag,
+.card .tags .tag,
 .post-meta .tags .tag {
   font-size: var(--font-size-small);
   font-weight: 500;
@@ -54,6 +54,6 @@
   letter-spacing: 0.5px;
 }
 
-.block:hover .tags .tag {
+.card:hover .tags .tag {
   border-color: var(--color-accent-muted);
 }

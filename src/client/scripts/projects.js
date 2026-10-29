@@ -1,9 +1,10 @@
-import { create_card, show_element } from "./utils.js";
+import { show_element } from "./utils.js";
+import { create_card } from "./cards.js";
 import { mount_wasm_project, unmount_wasm_project } from "./wasm.js";
 import { setup_filters } from "./filters.js";
 
 const projects_section = document.querySelector(".projects");
-const projects_list = projects_section.querySelector(".blocks");
+const projects_list = projects_section.querySelector(".cards");
 const project_filters = projects_section.querySelector(".filters-container");
 const project_container = document.querySelector(".project");
 const not_found_section = document.querySelector(".not-found");
